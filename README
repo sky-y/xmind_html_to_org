@@ -1,0 +1,6 @@
+xmind_html_to_org converts HTML exported from XMind to Emacs Org file
+
+*Usage
+
+./xmind_html_to_org.rb filename.html [filename.org]
+
