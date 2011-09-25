@@ -10,20 +10,20 @@ def traverse(doc)
     h1 = Hpricot(elem.to_html).search("h1")
     if h1.length > 0
       buf += "\n"
-      buf += "*" + clean(h1) + "\n"
+      buf += "* " + clean(h1) + "\n"
       buf += "\n"
     end
     
     h2 = Hpricot(elem.to_html).search("h2")
     if h2.length > 0
       buf += "\n"
-      buf += "**" + clean(h2) + "\n"
+      buf += "** " + clean(h2) + "\n"
       buf += "\n"
     end
 
     h3 = Hpricot(elem.to_html).search("h3")
     if h3.length > 0
-      buf += "***" + clean(h3)
+      buf += "*** " + clean(h3)
       buf += "\n"
     end
   end
