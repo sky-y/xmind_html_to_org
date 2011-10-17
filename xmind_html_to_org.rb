@@ -3,28 +3,50 @@
 
 require 'rubygems'
 require 'hpricot'
+require 'URI'
 
 def traverse(doc)
   buf = ""
+  traversed_text = ""
   doc.each do |elem|
-    h1 = Hpricot(elem.to_html).search("h1")
+    e = Hpricot(elem.to_html)
+    h1 = e.search("h1")
     if h1.length > 0
       buf += "\n"
       buf += "* " + clean(h1) + "\n"
       buf += "\n"
     end
     
-    h2 = Hpricot(elem.to_html).search("h2")
+    h2 = e.search("h2")
     if h2.length > 0
       buf += "\n"
       buf += "** " + clean(h2) + "\n"
       buf += "\n"
     end
 
-    h3 = Hpricot(elem.to_html).search("h3")
+    div = e.search("div")
+    if div != nil
+      if div.attr('class') =~ /overview/
+        img_src = e.search("img")
+        if img_src.length > 0 
+          URI.decode(img_src.attr('src')) =~ /(.*)\/images\/(.*)\.jpg/
+          puts $2
+          buf += "*** " + $2
+          buf += "\n"
+          traversed_text = ""
+        end
+      end
+    end
+
+    h3 = e.search("h3")
     if h3.length > 0
-      buf += "*** " + clean(h3)
-      buf += "\n"
+      if traversed_text == clean(h3)
+        traversed_text = ""
+        ## skip
+      else
+        buf += "*** " + clean(h3)
+        buf += "\n"
+      end
     end
   end
 
