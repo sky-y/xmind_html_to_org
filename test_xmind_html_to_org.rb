@@ -7,7 +7,8 @@ require 'xmind_html_to_org.rb'
 
 class TestXMindHTMLToOrg < Test::Unit::TestCase
   def setup
-    @html2org = XMindHTMLToOrg.new
+    @html2org = XMindHTMLToOrg.new(true, false)
+    @html2org_with_indent = XMindHTMLToOrg.new(true, true)
     @html2org_no_autoindent = XMindHTMLToOrg.new(false)
     @test_html = open("test.html").read
     @doc = Nokogiri::HTML.parse(@test_html,
@@ -37,11 +38,11 @@ class TestXMindHTMLToOrg < Test::Unit::TestCase
   end
 
   def test_traverse
-    html = @html2org.traverse(@doc.search("/html/body"))
+    html = @html2org_with_indent.traverse(@doc.search("/html/body"))
     assert_equal(@file_test_org.read, html, "#1: auto indent")
 
     html_no_autoindent = @html2org_no_autoindent.traverse(@doc.search("/html/body"))
-    assert_equal(@file_test_org_no_autoindent.read, html, "#2: no auto indent")
+    assert_equal(@file_test_org_no_autoindent.read, html_no_autoindent, "#2: no auto indent")
 
   end
 

@@ -1,3 +1,10 @@
+#+TITLE: てすと
+#+AUTHOR: Author
+#+DATE: \today
+#+LATEX_CLASS: jsarticle
+#+OPTIONS: toc:nil
+
+
 
 * てすと
 
