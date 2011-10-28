@@ -129,7 +129,7 @@ class XMindHTMLToOrg
 #+TITLE: #{traversed_header['text']}
 #+AUTHOR: Author
 #+DATE: \\today
-#+LATEX_CLASS: jsarticle
+#+LATEX_CLASS: jarticle
 #+OPTIONS: toc:nil
 
 

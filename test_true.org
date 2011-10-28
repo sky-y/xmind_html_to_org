@@ -1,7 +1,7 @@
 #+TITLE: てすと
 #+AUTHOR: Author
 #+DATE: \today
-#+LATEX_CLASS: jsarticle
+#+LATEX_CLASS: jarticle
 #+OPTIONS: toc:nil
 
 
